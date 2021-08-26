@@ -1,0 +1,16 @@
+version: "3.5"
+services:
+  mrtg:
+    build: .
+    hostname: mrtg
+    restart: always
+    ports:
+      - "8080:80"
+    volumes:
+      - "./conf.d:/etc/mrtg/conf.d"
+      - "./html:/mrtg/html"
+    environment:
+        TZ: "Europe/Istanbul"
+        HOSTS: 'public:192.168.0.31'
+    tmpfs:
+      - "/run"
