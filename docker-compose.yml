@@ -1,7 +1,8 @@
 version: "3.5"
 services:
   mrtg:
-    build: .
+    image: fboaventura/dckr-mrtg:v2.2.0
+    #    build: .
     hostname: mrtg
     restart: always
     ports:
@@ -10,7 +11,8 @@ services:
       - "./conf.d:/etc/mrtg/conf.d"
       - "./html:/mrtg/html"
     environment:
-        TZ: "Europe/Istanbul"
-        HOSTS: 'public:192.168.0.31'
+      TZ: "Europe/Istanbul"
+      HOSTS: "public:localhost"
+      WEBDIR: "/mrtg/html"
     tmpfs:
       - "/run"
