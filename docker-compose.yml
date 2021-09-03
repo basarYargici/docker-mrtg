@@ -3,7 +3,7 @@ services:
   mrtg:
     image: fboaventura/dckr-mrtg:v2.2.0
     hostname: mrtg
-    restart: always
+    restart: unless-stopped
     ports:
       - "8080:80"
     volumes:
@@ -11,7 +11,10 @@ services:
       - "./html:/mrtg/html"
     environment:
       TZ: "Europe/Istanbul"
-      HOSTS: "public:172.31.176.1"
+      HOSTS: "public:172.17.160.1"
       WEBDIR: "/mrtg/html"
     tmpfs:
       - "/run"
+
+# if timeout response happens: type arp -a and get an interface start with 172. Also change trap in snmp servicea
+
